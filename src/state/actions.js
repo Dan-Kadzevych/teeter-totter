@@ -41,6 +41,10 @@ export const moveLeftShapeRight = value => ({
   payload: { value }
 });
 
+export const decrementGameTickTiming = () => ({
+  type: types.decrementGameTickTiming
+});
+
 export const resetGameState = () => ({
   type: types.resetGameState
 });
@@ -53,6 +57,7 @@ const actions = {
   moveLeftShapeDown,
   moveLeftShapeLeft,
   moveLeftShapeRight,
+  decrementGameTickTiming,
   resetGameState
 };
 

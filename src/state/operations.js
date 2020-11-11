@@ -6,7 +6,6 @@ import {
   VERTICAL_STEP,
   HORIZONTAL_STEP,
   ARROW_KEY_CODES,
-  GAME_TICK_TIMING
 } from "../utils/constants";
 
 let gameTimer = null;
@@ -37,6 +36,7 @@ const gameTick = () => (dispatch, getState) => {
       ((leftSideShape.right + 100) / 100) * leftSideShape.weight;
 
     if (rightShapeMomentum === leftShapeMomentum) {
+      dispatch(actions.decrementGameTickTiming());
       setTimeout(() => dispatch(startGame()), 1000);
     } else {
       dispatch(actions.setLeftShapeMomentum(leftShapeMomentum));
@@ -46,7 +46,8 @@ const gameTick = () => (dispatch, getState) => {
   }
 };
 
-export const startGame = () => dispatch => {
+export const startGame = () => (dispatch, getState) => {
+  const { gameTickTimingMs } = getState();
   const rightShape = getRandomShape();
   const rightShapeMomentum =
     ((rightShape.horizontalPosition + 100) / 100) * rightShape.weight;
@@ -73,7 +74,7 @@ export const startGame = () => dispatch => {
 
   dispatch(actions.setGameStatus(GAME_STATUSES.inProgress));
 
-  gameTimer = setInterval(() => dispatch(gameTick()), GAME_TICK_TIMING);
+  gameTimer = setInterval(() => dispatch(gameTick()), gameTickTimingMs);
 
   document.addEventListener("keydown", onKeyPress);
 };
@@ -84,9 +85,10 @@ export const pauseGame = () => dispatch => {
   document.removeEventListener("keydown", onKeyPress);
 };
 
-export const resumeGame = () => dispatch => {
+export const resumeGame = () => (dispatch, getState) => {
+  const { gameTickTimingMs } = getState();
   dispatch(actions.setGameStatus(GAME_STATUSES.inProgress));
 
-  gameTimer = setInterval(() => dispatch(gameTick()), GAME_TICK_TIMING);
+  gameTimer = setInterval(() => dispatch(gameTick()), gameTickTimingMs);
   document.addEventListener("keydown", onKeyPress);
 };

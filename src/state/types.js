@@ -6,6 +6,7 @@ export const setLeftShapeMomentum = "Set Left Shape Momentum";
 export const moveLeftShapeDown = "Move Left Shape Down";
 export const moveLeftShapeRight = "Move Left Shape Right";
 export const moveLeftShapeLeft = "Move Left Shape Left";
+export const decrementGameTickTiming = "Decrement Game Tick Timing";
 export const resetGameState = "Reset Game State";
 
 const types = {
@@ -17,6 +18,7 @@ const types = {
   moveLeftShapeDown,
   moveLeftShapeRight,
   moveLeftShapeLeft,
+  decrementGameTickTiming,
   resetGameState
 };
 

@@ -4,6 +4,7 @@ import { GAME_STATUSES } from "utils/constants";
 import types from "state/types";
 
 const initialState = {
+  gameTickTimingMs: 10,
   gameStatus: GAME_STATUSES.waiting,
   rightSideShape: undefined,
   leftSideShape: undefined
@@ -32,7 +33,7 @@ function moveLeftShapeDown(state = initialState, { payload: { value } }) {
 }
 
 function moveLeftShapeRight(state = initialState, { payload: { value } }) {
-  if (state.leftSideShape.right  <= 0) {
+  if (state.leftSideShape.right <= 0) {
     return state;
   }
 
@@ -63,6 +64,14 @@ function setGameStatus(state = initialState, { payload: { gameStatus } }) {
   return { ...state, gameStatus };
 }
 
+function decrementGameTickTiming(state = initialState) {
+  if (state.gameTickTimingMs === 1) {
+    return state;
+  }
+
+  return { ...state, gameTickTimingMs: state.gameTickTimingMs - 1 };
+}
+
 function resetGameState() {
   return initialState;
 }
@@ -75,6 +84,7 @@ const handlers = {
   [types.moveLeftShapeLeft]: moveLeftShapeLeft,
   [types.moveLeftShapeRight]: moveLeftShapeRight,
   [types.setGameStatus]: setGameStatus,
+  [types.decrementGameTickTiming]: decrementGameTickTiming,
   [types.resetGameState]: resetGameState
 };
 
