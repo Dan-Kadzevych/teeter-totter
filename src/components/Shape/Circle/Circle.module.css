@@ -1,0 +1,11 @@
+.circle {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background: aquamarine;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.1s linear;
+}

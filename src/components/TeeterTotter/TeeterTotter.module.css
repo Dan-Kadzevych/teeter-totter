@@ -1,0 +1,20 @@
+.teeterTotter {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bar {
+    width: 1000px;
+    height: 10px;
+    background-color: #be2c2c;
+    transition: all 1s ease;
+}
+
+.leg {
+    width: 0;
+    height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 150px solid #5a3030;
+}

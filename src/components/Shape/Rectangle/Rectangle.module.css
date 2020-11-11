@@ -1,0 +1,10 @@
+.rectangle {
+    position: absolute;
+    height: 50px;
+    width: 100px;
+    background: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.1s linear;
+}
